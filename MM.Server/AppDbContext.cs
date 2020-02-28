@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace MM
+namespace MM.Server
 {
     public class AppDbContext : IdentityDbContext<Account>
     {

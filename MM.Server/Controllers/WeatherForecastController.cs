@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MM.Model;
 
-namespace WebApplication1.Controllers
+namespace MM.Server
 {
     [ApiController]
     [Route("[controller]")]
@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Baby", "Zo", "Is", "The", "Best", "!", "~", "!", "!", "@"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
