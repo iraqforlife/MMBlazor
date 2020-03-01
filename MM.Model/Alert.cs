@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MarketMoves.Models.Enums;
-namespace MM
+
+namespace MM.Model
 {
     public class Alert
     {

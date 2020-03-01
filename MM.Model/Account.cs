@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MM
+namespace MM.Model
 {
     public class Account : IdentityUser
     {

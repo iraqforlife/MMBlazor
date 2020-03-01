@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WebApplication1": {
+    "MM.Server": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

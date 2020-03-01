@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using MM.Model;
 
 namespace MM.Server
 {
@@ -26,22 +28,18 @@ namespace MM.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            /*
-            if(env.IsDevelopment())
-                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            else
-                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeployementConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeployementConnection")));
 
             services.AddIdentity<Account, IdentityRole>(options => { options.User.AllowedUserNameCharacters = String.Empty; options.User.RequireUniqueEmail = true; }).AddEntityFrameworkStores<AppDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             
-            var google = Configuration.GetSection("Google");*/
+            var google = Configuration.GetSection("Google");
             /*services.AddAuthentication().AddGoogle(o =>
             {
                 o.ClientId = google["ClientId"];
                 o.ClientSecret = google["ClientSecret"];
             });
-
+            */
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminAccess", policy => policy.RequireRole(Roles.Admin));
@@ -50,7 +48,6 @@ namespace MM.Server
                                 context.User.IsInRole(Roles.Admin)
                                 || context.User.IsInRole(Roles.PaidUser)));
             });
-            */
             // Add Cors
             services.AddCors(o => o.AddPolicy("Policy", builder => {
                 builder.AllowAnyOrigin()

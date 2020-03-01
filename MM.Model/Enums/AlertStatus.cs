@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MarketMoves.Models.Enums
+namespace MM.Model
 {
     public enum AlertStatus
     {

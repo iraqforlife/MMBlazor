@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MarketMoves.Models.Enums
+namespace MM.Model
 {
     public enum OptionType
     {

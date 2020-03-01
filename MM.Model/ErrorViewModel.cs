@@ -1,6 +1,6 @@
 using System;
 
-namespace MarketMoves.Models
+namespace MM.Model
 {
     public class ErrorViewModel
     {
