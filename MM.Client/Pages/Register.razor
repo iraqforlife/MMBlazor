@@ -1,0 +1,78 @@
+﻿@page "/register"
+@inject HttpClient http
+@inject ILoginService  loginService
+@inject NavigationManager navigationManager
+
+<h3>Register</h3>
+<h4>Associate your Google account.</h4>
+<hr />
+
+<p class="text-info">
+    You've successfully authenticated with <strong>Google</strong>.
+    Please enter an email address for this site below and click the Register button to finish
+    logging in.
+</p>
+<div class="row">
+    <div class="col">
+        <EditForm Model="user" OnValidSubmit="CreateUser">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label>Email:</label>
+                <div>
+                    <InputText class="form-control" @bind-Value="@user.Email" />
+                    <ValidationMessage For="@(() => user.Email)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Phone number:</label>
+                <div>
+                    <InputText class="form-control" @bind-Value="@user.PhoneNumber" />
+                    <ValidationMessage For="@(() => user.PhoneNumber)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Get sms notification:</label>
+                <div>
+                    <InputCheckbox class="form-control" @bind-Value="@user.GetSmsNotification" />
+                    <ValidationMessage For="@(() => user.GetSmsNotification)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Tradingview Username:</label>
+                <div>
+                    <InputText class="form-control" @bind-Value="@user.TradingViewUserName" />
+                    <ValidationMessage For="@(() => user.TradingViewUserName)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Discord Username:</label>
+                <div>
+                    <InputText class="form-control" @bind-Value="@user.DiscordUserName" />
+                    <ValidationMessage For="@(() => user.DiscordUserName)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Name :</label>
+                <div>
+                    <InputText class="form-control" @bind-Value="@user.Name" />
+                    <ValidationMessage For="@(() => user.Name)" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private Account user = new Account();
+
+    async Task CreateUser()
+    {
+        var result = await http.PostJsonAsync<UserToken>("accounts/create", user);
+        await loginService.Login(result.Token);
+        navigationManager.NavigateTo("");
+    }
+}

@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MM.Model;
-using MM.Server;
 
-namespace MM.Server.Controllers
+namespace MM.Server
 {
     [Route("[controller]")]
     [ApiController]

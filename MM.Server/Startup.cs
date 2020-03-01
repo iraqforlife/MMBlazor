@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MM.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MM.Server
 {
@@ -30,16 +33,33 @@ namespace MM.Server
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DeployementConnection")));
 
-            services.AddIdentity<Account, IdentityRole>(options => { options.User.AllowedUserNameCharacters = String.Empty; options.User.RequireUniqueEmail = true; }).AddEntityFrameworkStores<AppDbContext>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddIdentity<Account, IdentityRole>(options => { options.User.AllowedUserNameCharacters = String.Empty; options.User.RequireUniqueEmail = true; })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+              .AddJwtBearer(options =>
+           options.TokenValidationParameters = new TokenValidationParameters
+           {
+               ValidateIssuer = false,
+               ValidateAudience = false,
+               ValidateLifetime = true,
+               ValidateIssuerSigningKey = true,
+               IssuerSigningKey = new SymmetricSecurityKey(
+              Encoding.UTF8.GetBytes(Configuration["jwt:key"])),
+               ClockSkew = TimeSpan.Zero
+           });
+
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             
             var google = Configuration.GetSection("Google");
-            /*services.AddAuthentication().AddGoogle(o =>
+            services.AddAuthentication().AddGoogle(o =>
             {
                 o.ClientId = google["ClientId"];
                 o.ClientSecret = google["ClientSecret"];
             });
-            */
+            
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminAccess", policy => policy.RequireRole(Roles.Admin));
@@ -67,7 +87,9 @@ namespace MM.Server
             app.UseHttpsRedirection();
             app.UseCors("Policy");
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

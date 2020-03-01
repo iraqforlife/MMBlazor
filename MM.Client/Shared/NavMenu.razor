@@ -7,22 +7,44 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <i class="fas fa-home" style="margin-right:15px;"></i> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="OpenAlerts">
-                <i class="fas fa-list-ul" style="margin-right:15px;"></i> Alerts
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="AlertDetail\54" >
-                <i class="fas fa-fire" style="margin-right:15px;"></i> Hot list
-            </NavLink>
-        </li>
+        <AuthorizeView>
+            <Authorized>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        <i class="fas fa-home" style="margin-right:15px;"></i> Home
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="OpenAlerts">
+                        <i class="fas fa-list-ul" style="margin-right:15px;"></i> Alerts
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="/AlertDetail/54"><i class="fas fa-fire" style="margin-right:15px;"></i> Hot list</a>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="Counter">
+                        <i class="fas fa-fire" style="margin-right:15px;"></i> Counter
+                    </NavLink>
+                </li>
+            </Authorized>
+            <NotAuthorized>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="Counter">
+                        <i class="fas fa-fire" style="margin-right:15px;"></i> Counter
+                    </NavLink>
+                </li>
+            </NotAuthorized>
+            <Authorizing>
+                Authorizing...
+            </Authorizing>
+        </AuthorizeView>
+        <AuthorizeView Roles="admin">
+            <Authorized>
+            </Authorized>
+        </AuthorizeView>
     </ul>
+
 </div>
 
 @code {

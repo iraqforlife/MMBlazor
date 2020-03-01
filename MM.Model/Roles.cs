@@ -1,4 +1,4 @@
-﻿namespace MM.Server
+﻿namespace MM.Model
 {
     public static class Roles
     {

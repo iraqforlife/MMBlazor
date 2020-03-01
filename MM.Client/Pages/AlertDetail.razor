@@ -7,61 +7,59 @@
 }
 else
 {
-    <div class="container">
-        <h1 class="text-center">@CurrentAlert.Title</h1>
-        <div style="padding-bottom:20px">
-            <h2 class="text-center">Charts</h2>
-            <div style="padding-top:30px">
-                <h4 class="text-center">@CurrentAlert.Image1Description</h4>
-                <img src="@CurrentAlert.Image1Link" alt="@CurrentAlert.Image1Description" style="width:100%; height:auto" />
+    <h1 class="text-center">@CurrentAlert.Title</h1>
+    <div style="padding-bottom:20px">
+        <h2 class="text-center">Charts</h2>
+        <div style="padding-top:30px">
+            <h4 class="text-center">@CurrentAlert.Image1Description</h4>
+            <img src="@CurrentAlert.Image1Link" alt="@CurrentAlert.Image1Description" style="width:100%; height:auto" />
+        </div>
+        @if (!String.IsNullOrEmpty(CurrentAlert.Image2Link))
+        {
+            <div>
+                <h4 class="text-center">@CurrentAlert.Image2Description</h4>
+                <img src="@CurrentAlert.Image2Link" alt="@CurrentAlert.Image2Description" style="width:100%; height:auto" />
             </div>
-            @if (!String.IsNullOrEmpty(CurrentAlert.Image2Link))
-            {
-                <div>
-                    <h4 class="text-center">@CurrentAlert.Image2Description</h4>
-                    <img src="@CurrentAlert.Image2Link" alt="@CurrentAlert.Image2Description" style="width:100%; height:auto" />
-                </div>
-            }
-        </div>
+        }
+    </div>
 
-        <div style="padding-top:30px">
-            <h2 class="text-center" style="padding-bottom:20px">Trade Overview</h2>
-            <h5>
-                <strong>Option:</strong> @CurrentAlert.Option
-                <br />
-                <strong>Type:</strong> @CurrentAlert.OptionType
-                <br />
-                <strong>Strike price:</strong> @CurrentAlert.Strike $
-                <br />
-                <strong>ENTRY POINT:</strong> @CurrentAlert.Entry $
-                <br />
-                <strong style="color:green;">PROFIT ZONE:</strong> @CurrentAlert.ProfitPrice $
-                <br />
-                <strong style="color:green;">TARGET PROFIT:</strong>  @CurrentAlert.ProfitTarget %
-                <br />
-                <strong style="color:red">STOP LOSS:</strong> @CurrentAlert.LossPrice $
-                <br />
-                <strong style="color:red">POSSIBLE LOSS:</strong> @CurrentAlert.LossTarget %
-                <br />
-                <strong>RISK TO REWARD RATIO:</strong> @CurrentAlert.RiskReward
-            </h5>
-        </div>
+    <div style="padding-top:30px">
+        <h2 class="text-center" style="padding-bottom:20px">Trade Overview</h2>
+        <h5>
+            <strong>Option:</strong> @CurrentAlert.Option
+            <br />
+            <strong>Type:</strong> @CurrentAlert.OptionType
+            <br />
+            <strong>Strike price:</strong> @CurrentAlert.Strike $
+            <br />
+            <strong>ENTRY POINT:</strong> @CurrentAlert.Entry $
+            <br />
+            <strong style="color:green;">PROFIT ZONE:</strong> @CurrentAlert.ProfitPrice $
+            <br />
+            <strong style="color:green;">TARGET PROFIT:</strong>  @CurrentAlert.ProfitTarget %
+            <br />
+            <strong style="color:red">STOP LOSS:</strong> @CurrentAlert.LossPrice $
+            <br />
+            <strong style="color:red">POSSIBLE LOSS:</strong> @CurrentAlert.LossTarget %
+            <br />
+            <strong>RISK TO REWARD RATIO:</strong> @CurrentAlert.RiskReward
+        </h5>
+    </div>
 
-        <div style="padding-top:30px">
-            <h2 class="text-center" style="padding-bottom:20px">Description</h2>
-            <p style="font-size:1.5rem;">
-                @((MarkupString)CurrentAlert.Description)
-            </p>
-        </div>
-        <div style="padding-top:30px">
-            <h2 class="text-center" style="padding-bottom:20px">Discloser</h2>
-            <h3 style="color:gray;">
-                PLEASE REMEMBER THIS IS NOT FINANCIAL ADVICE PLEASE
-                TRADE AT YOUR OWN RISK. THIS IS JUST INFORMATION FOR YOU
-                TO USE AT YOUR DISCRETION. I AM NOT LIABLE FOR ANY LOSSES
-                THAT RESULT FROM YOU TRADING.
-            </h3>
-        </div>
+    <div style="padding-top:30px">
+        <h2 class="text-center" style="padding-bottom:20px">Description</h2>
+        <p style="font-size:1.5rem;">
+            @((MarkupString)CurrentAlert.Description)
+        </p>
+    </div>
+    <div style="padding-top:30px">
+        <h2 class="text-center" style="padding-bottom:20px">Discloser</h2>
+        <h3 style="color:gray;">
+            PLEASE REMEMBER THIS IS NOT FINANCIAL ADVICE PLEASE
+            TRADE AT YOUR OWN RISK. THIS IS JUST INFORMATION FOR YOU
+            TO USE AT YOUR DISCRETION. I AM NOT LIABLE FOR ANY LOSSES
+            THAT RESULT FROM YOU TRADING.
+        </h3>
     </div>
 }
 @code {

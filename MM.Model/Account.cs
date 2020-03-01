@@ -7,6 +7,7 @@ namespace MM.Model
 {
     public class Account : IdentityUser
     {
+        [Display(Name = "Tradingview Username")]
         public string TradingViewUserName { get; set; }
         public string DiscordUserName { get; set; }
         public bool Suscribed { get; set; }
@@ -25,6 +26,7 @@ namespace MM.Model
 
         public double Balance { get; set; }
         public List<Play> Plays { get; set; }
+        public Account() { }
         public Account(string email, string name) : base(email)
         {            
             Email = email;
