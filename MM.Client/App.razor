@@ -1,8 +1,6 @@
-﻿@using Microsoft.AspNetCore.Components.Authorization
-
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
-        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" >
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
             <NotAuthorized>
                 Please login to view the content.
             </NotAuthorized>

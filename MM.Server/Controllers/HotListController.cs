@@ -10,11 +10,11 @@ namespace MM.Server
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HotListsController : ControllerBase
+    public class HotListController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public HotListsController(AppDbContext context)
+        public HotListController(AppDbContext context)
         {
             _context = context;
         }
