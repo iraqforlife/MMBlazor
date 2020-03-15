@@ -1,0 +1,34 @@
+﻿@page "/HotList"
+@inject HttpClient client
+<h3><i class="fas fa-fire" style="margin-right:15px;"></i> Hot List <i class="fas fa-fire" style="margin-left:15px;"></i></h3>
+
+@if (hotLists is null)
+{
+    <p>Loading...</p>
+}
+else if (hotLists.Length == 0)
+{   
+    <p>The hot list is empty.</p>
+}
+else
+{
+    @foreach (var item in hotLists)
+    {
+        <table class="table">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    }
+}
+
+
+
+@code {
+    HotList[] hotLists { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        hotLists = await client.GetJsonAsync<HotList[]>("api/HotList");
+    }
+}

@@ -31,7 +31,7 @@ namespace MM.Server
             _configuration = configuration;
         }
 
-        [HttpPost("Create")]
+        /*[HttpPost("Create")]
         public async Task<ActionResult<UserToken>> CreateUser([FromBody] Account model)
         {
             var user = new IdentityUser { UserName = model.Email, Email = model.Email };
@@ -61,7 +61,7 @@ namespace MM.Server
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return BadRequest(ModelState);
             }
-        }
+        }*/
 
         private UserToken BuildToken(Account userInfo)
         {

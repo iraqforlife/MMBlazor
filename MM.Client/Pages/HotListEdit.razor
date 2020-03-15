@@ -1,0 +1,53 @@
+﻿@page "/HotList Edit"
+@inject HttpClient client
+<h3>Hot List Settings</h3>
+
+@if (hotList is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+<EditForm Model="newHotListItem" OnValidSubmit="AddItem">
+    <DataAnnotationsValidator />
+    <button type="submit" class="btn btn-success">Add</button>
+</EditForm>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>description</th>
+            <th>Image Link</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (HotList hot in hotList)
+        {
+            <tr>
+                <td>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}
+
+
+
+@code {
+    List<HotList> hotList { get; set; }
+    HotList newHotListItem = new HotList();
+    bool displayAdd { get; set; } = false;
+    Play play { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        hotList = await client.GetJsonAsync<List<HotList>>("api/HotList");
+    }
+    async Task AddItem()
+    {
+        await client.PostJsonAsync("api/HotLists", newHotListItem);
+    }
+}

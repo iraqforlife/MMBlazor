@@ -22,18 +22,5 @@ namespace MM.Model
         public string Proof { get; set; }
         public bool Locked { get; set; }
 
-        public void Update(Play play)
-        {
-            AccountId = play.AccountId;
-            Profit = play.Profit;
-            Entry = play.Entry;
-            Exit = play.Exit;
-            Why = play.Why;
-            Execution = play.Execution;
-            Learning = play.Learning;
-            Title = play.Title;
-            Proof = play.Proof;
-            Locked = play.Locked;
-        }
     }
 }
