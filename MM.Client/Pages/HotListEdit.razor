@@ -2,52 +2,75 @@
 @inject HttpClient client
 <h3>Hot List Settings</h3>
 
+<EditForm Model="newHotListItem" OnValidSubmit="AddItem">
+    <DataAnnotationsValidator />
+
+    <div class="form-control">
+        <label>Symbol:</label>
+        <InputText @bind-Value="newHotListItem.Symbol" style="width:30%" />
+        <ValidationMessage For="()=>newHotListItem.Symbol" />
+    </div>
+    <div class="form-control">
+        <label>Image:</label>
+        <InputText @bind-Value="newHotListItem.Image" style="width:50%" />
+        <ValidationMessage For="()=>newHotListItem.Image" />
+    </div>
+    <div class="form-control">
+        <label>Description:</label>
+        <InputText @bind-Value="newHotListItem.Description" style="width:80%" />
+        <ValidationMessage For="()=>newHotListItem.Description" />
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+</EditForm>
+
 @if (hotList is null)
 {
     <p>Loading...</p>
 }
 else
 {
-<EditForm Model="newHotListItem" OnValidSubmit="AddItem">
-    <DataAnnotationsValidator />
-    <button type="submit" class="btn btn-success">Add</button>
-</EditForm>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Symbol</th>
-            <th>Description</th>
-            <th>Image Link</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var hot in hotList)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@hot.Symbol</td>
-                <td>@hot.Description</td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>Image Link</th>
+                <th></th>
             </tr>
+        </thead>
+        <tbody>
+            @foreach (var hot in hotList)
+            {
+                <tr>
+                    <td>@hot.Symbol</td>
+                    <td>@hot.Description</td>
+                    <td><button class="btn btn-danger" @onclick="()=>DeleteItem(hot.Id)">Delete</button></td>
+                </tr>
 
-        }
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
 }
 
 
 
 @code {
-    Model.HotList[] hotList { get; set; }
+    List<Model.HotList> hotList { get; set; }
     Model.HotList newHotListItem = new Model.HotList();
     bool displayAdd { get; set; } = false;
     Play play { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        hotList = await client.GetJsonAsync<Model.HotList[]>("https://localhost:44365/api/hotlist");
+        hotList = await client.GetJsonAsync<List<Model.HotList>>("https://localhost:44365/api/hotlist");
     }
     async Task AddItem()
     {
-        await client.PostJsonAsync("https://localhost:44365/api/HotLists", newHotListItem);
+        await client.PostJsonAsync("https://localhost:44365/api/HotList", newHotListItem);
+        hotList.Add(newHotListItem);
+    }
+    async Task DeleteItem(int id)
+    {
+        await client.DeleteAsync($"https://localhost:44365/api/HotList/{id}");
+        hotList.RemoveAll(h => h.Id == id);
     }
 }
