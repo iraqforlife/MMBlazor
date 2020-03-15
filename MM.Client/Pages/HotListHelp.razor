@@ -1,0 +1,37 @@
+﻿<div>
+    <p>These are setups with a predicted direction that is all. There is no option choice, expiration date, profit zone, stop loss,  best entry zone.  These charts are my favorite charts in all of the market and we have seen 60-70% win rates.  These setups are meant to empower you, allow you to trade something with a high chance of profitability.  The practice from developing a trade and executing is invaluable and will ultimately lead to your success long term.  To really do well you can’t solely rely on me.  So challenge yourself with these setups and have some fun!</p>
+
+    <ul>
+        <li>Find a chart with a set up you agree with</li>
+        <li>Figure out where to enter</li>
+        <li>Figure out your stop loss and profit zone</li>
+        <li>Share with the group if you want to!</li>
+        <li>Don’t ask me what you should.  I cannot give personal advice.</li>
+    </ul>
+
+    <h3>Tips for Success</h3>
+    <ul>
+        <li>This group swing trades 3-5 options per week, swing trading means you can be patient wait for the right entry wait, scale out, wait for the right exit point.</li>
+        <li>Don't enter without a plan (I provide the plan most of the time)</li>
+        <li>TAKE LOSSES!  If you don't respect your losers you will never outpace your winners and make a profit</li>
+        <li>Take PROFIT when our alerts win!  It may not always hit the exact profit zone (I am not a gene deciding these levels, I am a human being)</li>
+        <li>LOOK AT THE HOTLIST, many of those plays run for 100-300%</li>
+        <li>Read the damn trade set up!</li>
+        <lI>Once I send out the trade, it DOESN'T mean ENTER RIGHT AWAY</lI>
+        <li>If you miss a winning trade, no worries we put out trades on Wednesday and Friday!</li>
+        <li>Ask questions to the "pro traders" in the group</li>
+        <li>Become a student in the group, this isn't a get rich quick subscription</li>
+        <li>Watch the live streams, replays ALWAYS available 1 hour after the stream ends</li>
+        <li>Read and study the "closed alerts"</li>
+        <li>Practice charting and put your work in discord for us to help critique!</li>
+        <li>Don't trade everything you hear about, be selective and do your own research</li>
+        <li>Watch past videos on my trading channel to learn (https://www.youtube.com/channel/UCDVgFZJA_pRkPur21jUhRBA)</li>
+    </ul>
+
+    <button @onclick="Close" class="btn btn-secondary">Close</button>
+</div>
+@code {
+    [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; }
+    
+    void Close() => BlazoredModal.Close();
+}

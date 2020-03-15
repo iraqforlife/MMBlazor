@@ -61,16 +61,16 @@ else
     Play play { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        hotList = await client.GetJsonAsync<List<Model.HotList>>("https://localhost:44365/api/hotlist");
+        hotList = await client.GetJsonAsync<List<Model.HotList>>("https://mmapi2020.azurewebsites.net/api/hotlist");
     }
     async Task AddItem()
     {
-        await client.PostJsonAsync("https://localhost:44365/api/HotList", newHotListItem);
+        await client.PostJsonAsync("https://mmapi2020.azurewebsites.net/api/HotList", newHotListItem);
         hotList.Add(newHotListItem);
     }
     async Task DeleteItem(int id)
     {
-        await client.DeleteAsync($"https://localhost:44365/api/HotList/{id}");
+        await client.DeleteAsync($"https://mmapi2020.azurewebsites.net/api/HotList/{id}");
         hotList.RemoveAll(h => h.Id == id);
     }
 }
